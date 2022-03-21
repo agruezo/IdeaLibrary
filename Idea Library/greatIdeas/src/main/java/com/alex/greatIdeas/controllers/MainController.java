@@ -108,7 +108,44 @@ public class MainController {
 				User userLoggedIn = userService.findById(user.getId());
 				viewModel.addAttribute("ideas", ideaService.getAllIdeas());
 				viewModel.addAttribute("userLoggedIn", userLoggedIn);
+				viewModel.addAttribute("ideaLikesDesc", ideaService.ideaLikesDesc());
 				return "dashboard.jsp";
+			}
+			
+			return "redirect:/";
+		}
+		
+		@GetMapping("/ideas/highest")
+		public String highestLikes(
+				Model viewModel,
+				HttpSession session) {
+			
+			if(session.getAttribute("loggedInUser") != null) {
+				User user = (User) session.getAttribute("loggedInUser");
+				User userLoggedIn = userService.findById(user.getId());
+				
+				viewModel.addAttribute("userLoggedIn", userLoggedIn);
+				viewModel.addAttribute("ideaLikesDesc", ideaService.ideaLikesDesc());
+				
+				return "dashboardDesc.jsp";
+			}
+			
+			return "redirect:/";
+		}
+		
+		@GetMapping("/ideas/lowest")
+		public String lowestLikes(
+				Model viewModel,
+				HttpSession session) {
+			
+			if(session.getAttribute("loggedInUser") != null) {
+				User user = (User) session.getAttribute("loggedInUser");
+				User userLoggedIn = userService.findById(user.getId());
+				
+				viewModel.addAttribute("userLoggedIn", userLoggedIn);
+				viewModel.addAttribute("ideaLikesAsc", ideaService.ideaLikesAsc());
+				
+				return "dashboardAsc.jsp";
 			}
 			
 			return "redirect:/";

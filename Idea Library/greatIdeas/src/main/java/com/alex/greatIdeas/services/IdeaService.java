@@ -67,5 +67,17 @@ public class IdeaService {
 		ideaRepository.save(idea);
 	}
 	
+	public List<Idea> ideaLikesDesc() {
+		
+		return ideaRepository.findAllByIdeaLikesOrderByIdeaLikersDesc();
+		
+	}
+	
+	public List<Idea> ideaLikesAsc() {
+		
+		return ideaRepository.findAllByIdeaLikersOrderByIdeaLikersAsc();
+		
+	}
+	
 	
 }

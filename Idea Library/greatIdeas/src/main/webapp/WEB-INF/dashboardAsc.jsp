@@ -24,8 +24,7 @@
 			</div>
 			<div class="my-2">
 				<p class="text-center">
-					<a href="/ideas/highest" class="btn btn-info">Highest Likes</a>
-					<a href="/ideas/lowest" class="btn btn-secondary">Lowest Likes</a>
+					<a href="/ideas" class="btn btn-warning">Dashboard</a>
 					<a href="/logout" class="btn btn-danger">Logout</a>
 				</p>
 			</div>
@@ -39,21 +38,21 @@
 				<th>Action</th>
 			</tr>
 		<tbody>
-			<c:forEach items="${ideas}" var="idea">
+			<c:forEach items="${ideaLikesAsc}" var="ideaLike">
 			<tr class="table-light">
-				<td><a href="/ideas/${idea.id}"><c:out value="${idea.content}"/></a></td>
-				<td>${idea.creator.name}</td>
+				<td><a href="/ideas/${ideaLike.id}"><c:out value="${ideaLike.content}"/></a></td>
+				<td>${ideaLike.creator.name}</td>
 				<td>
-					${idea.ideaLikers.size()}
+					${ideaLike.ideaLikers.size()}
 				</td>
 				<td>
-				<c:if test="${idea.creator.id != loggedInUser.id}">
+				<c:if test="${ideaLike.creator.id != loggedInUser.id}">
 					<c:choose>
-						<c:when test="${idea.ideaLikers.contains(userLoggedIn)}">
-							<a href="/ideas/${idea.id}/unlike" class="btn btn-danger">Unlike</a>
+						<c:when test="${ideaLike.ideaLikers.contains(userLoggedIn)}">
+							<a href="/ideas/${ideaLike.id}/unlike" class="btn btn-danger">Unlike</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/ideas/${idea.id}/like" class="btn btn-success">Like</a>
+							<a href="/ideas/${ideaLike.id}/like" class="btn btn-success">Like</a>
 						</c:otherwise>
 					</c:choose>
 				</c:if>
