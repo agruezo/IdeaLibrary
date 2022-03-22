@@ -1,5 +1,7 @@
 package com.alex.greatIdeas.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -108,7 +110,7 @@ public class MainController {
 				User userLoggedIn = userService.findById(user.getId());
 				viewModel.addAttribute("ideas", ideaService.getAllIdeas());
 				viewModel.addAttribute("userLoggedIn", userLoggedIn);
-				viewModel.addAttribute("ideaLikesDesc", ideaService.ideaLikesDesc());
+				
 				return "dashboard.jsp";
 			}
 			
@@ -125,9 +127,9 @@ public class MainController {
 				User userLoggedIn = userService.findById(user.getId());
 				
 				viewModel.addAttribute("userLoggedIn", userLoggedIn);
-				viewModel.addAttribute("ideaLikesDesc", ideaService.ideaLikesDesc());
+				viewModel.addAttribute("ideas", ideaService.ideaLikesDesc());
 				
-				return "dashboardDesc.jsp";
+				return "dashboard.jsp";
 			}
 			
 			return "redirect:/";
@@ -143,9 +145,9 @@ public class MainController {
 				User userLoggedIn = userService.findById(user.getId());
 				
 				viewModel.addAttribute("userLoggedIn", userLoggedIn);
-				viewModel.addAttribute("ideaLikesAsc", ideaService.ideaLikesAsc());
+				viewModel.addAttribute("ideas", ideaService.ideaLikesAsc());
 				
-				return "dashboardAsc.jsp";
+				return "dashboard.jsp";
 			}
 			
 			return "redirect:/";
@@ -234,7 +236,6 @@ public class MainController {
 				return "edit.jsp";
 			}
 			
-			ideaService.updateIdea(idea);
 			return "redirect:/ideas";
 		}
 		
