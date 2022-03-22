@@ -1,7 +1,5 @@
 package com.alex.greatIdeas.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
