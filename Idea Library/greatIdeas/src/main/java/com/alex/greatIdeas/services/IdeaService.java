@@ -41,6 +41,8 @@ public class IdeaService {
 	// Update idea
 	public Idea updateIdea(Idea idea) {
 		
+		List<User> ideaLikers = idea.getIdeaLikers();
+		idea.setIdeaLikers(ideaLikers);
 		return ideaRepository.save(idea);
 	}
 	
